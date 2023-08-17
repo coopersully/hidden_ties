@@ -27,13 +27,13 @@ body {
 }
 
 .game-card {
-    width: 500px;
-    height: 300px;
+    width: 32rem;
+    height: 18rem;
     margin: 20px auto;
     background-color: var(--theme04);
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--theme04);
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(1, 1, 1, 0.25);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -54,28 +54,5 @@ body {
 
 .game-card:hover {
     transform: translateZ(12px);
-}
-
-.about-container {
-    max-height: 400px; /* or whatever height you want */
-    overflow-y: auto;
-}
-
-
-/* Responsive adjustments for smaller devices */
-@media (max-width: 768px) {
-    .game-card {
-        width: 80%;
-        height: auto; /* Auto height to preserve aspect ratio */
-        padding-bottom: 60%; /* Aspect ratio 5:3 (300px/500px = 0.6) */
-        position: relative;
-    }
-
-    .game-card p {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
+    box-shadow: none;
 }
