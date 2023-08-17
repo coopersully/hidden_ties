@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Play{% endblock %}
+
+{% block content %}
+
+    <div id="card-container" class="d-flex flex-column align-items-center text-center">
+        <div class="ht-secondary my-2">
+            <p id="card-count">CARD 0/0</p>
+        </div>
+        <div class="d-flex align-items-center">
+            <button id="prev" class="btn btn-link text-primary mx-4" onclick="navigate(-1)">
+                <i class="fas fa-arrow-circle-left fa-2x"></i>
+            </button>
+            <div id="card" class="game-card ht-secondary">
+                <p id="card-text"></p>
+            </div>
+            <button id="next" class="btn btn-link text-primary mx-4" onclick="navigate(1)">
+                <i class="fas fa-arrow-circle-right fa-2x"></i>
+            </button>
+        </div>
+        <div class="ht-secondary my-2">
+            <p id="hidden-ties">HIDDEN TIES</p>
+        </div>
+    </div>
+
+    <script>
+        var cards = {{ cards|tojson }};
+        var currentIndex = 0;
+
+        const cardCountElement = document.getElementById('card-count');
+        const hiddenTiesElement = document.getElementById('hidden-ties');
+
+        function navigate(direction) {
+            var nextIndex = currentIndex + direction;
+
+            if (nextIndex < 0) {
+                currentIndex = -1; // Set a special index for "No previous card"
+            } else if (nextIndex >= cards.length) {
+                currentIndex = cards.length; // Set a special index for "No further cards"
+            } else {
+                currentIndex = nextIndex; // Normal navigation
+            }
+
+            showCard();
+        }
+
+        function showCard() {
+            if (currentIndex === -1) {
+                document.getElementById('card-text').innerText = "No previous card";
+            } else if (currentIndex === cards.length) {
+                document.getElementById('card-text').innerText = "No further cards";
+            } else {
+                cardCountElement.innerText = "CARD " + (currentIndex + 1) + "/" + cards.length;
+                document.getElementById('card-text').innerText = cards[currentIndex];
+            }
+        }
+
+        showCard(); // Show the first card on page load
+    </script>
+
+    <script src="{{ url_for('static', filename='js/card-hover.js') }}">
+{% endblock %}

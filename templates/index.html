@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="text-center text-white">
+        <i class="fas fa-people-arrows fa-2x mb-3"></i>
+        <h1 class="display-4">Hidden Ties</h1>
+        <p class="lead col-6 mx-auto">A game that explores connections, feelings, and questions that bring people closer
+            together.
+            With a blend of thought-provoking questions and gentle prompts, it invites players to explore, share,
+            and celebrate their unique connections. Whether you're meeting someone new or deepening an existing
+            bond, Hidden Ties nurtures a space of connection, curiosity, and genuine conversation. Come closer, and
+            let's unfold the stories that bind us.</p>
+        <hr class="my-4">
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a href="{{ url_for('play') }}" class="btn btn-primary btn-lg">Play</a>
+            <a href="{{ url_for('about') }}" class="btn btn-secondary btn-lg">About</a>
+        </div>
+    </div>
+{% endblock %}

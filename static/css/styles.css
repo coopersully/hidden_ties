@@ -1,0 +1,81 @@
+:root {
+    --theme01: #000000;
+    --theme02: #004ddc;
+    --theme03: #068FFF;
+    --theme04: #EEEEEE;
+    --theme05: #A2FF86;
+}
+
+body {
+    background: var(--theme03);
+}
+
+.btn-primary {
+    --bs-btn-bg: var(--theme02);
+}
+
+.btn-secondary {
+    --bs-btn-bg: #494949;
+}
+
+.ht-primary {
+    font-family: 'Merriweather', serif;
+}
+
+.ht-secondary {
+    font-family: 'Kanit', sans-serif;
+}
+
+.game-card {
+    width: 500px;
+    height: 300px;
+    margin: 20px auto;
+    background-color: var(--theme04);
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    transition: transform 0.1s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
+    text-transform: uppercase;
+}
+
+.game-card p {
+    color: var(--theme02);
+    font-size: 18px;
+    padding: 20px;
+}
+
+.game-card:hover {
+    transform: translateZ(12px);
+}
+
+.about-container {
+    max-height: 400px; /* or whatever height you want */
+    overflow-y: auto;
+}
+
+
+/* Responsive adjustments for smaller devices */
+@media (max-width: 768px) {
+    .game-card {
+        width: 80%;
+        height: auto; /* Auto height to preserve aspect ratio */
+        padding-bottom: 60%; /* Aspect ratio 5:3 (300px/500px = 0.6) */
+        position: relative;
+    }
+
+    .game-card p {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+}
