@@ -25,19 +25,21 @@
     </div>
 
     <script>
-        var cards = {{ cards|tojson }};
-        var currentIndex = 0;
+        const cards = {{ cards|tojson }};
+        const numCards = cards.length;
+        let currentIndex = 0;
 
         const cardCountElement = document.getElementById('card-count');
         const hiddenTiesElement = document.getElementById('hidden-ties');
+        const cardTextElement = document.getElementById('card-text');
 
         function navigate(direction) {
             var nextIndex = currentIndex + direction;
 
             if (nextIndex < 0) {
                 currentIndex = -1; // Set a special index for "No previous card"
-            } else if (nextIndex >= cards.length) {
-                currentIndex = cards.length; // Set a special index for "No further cards"
+            } else if (nextIndex >= numCards) {
+                currentIndex = numCards; // Set a special index for "No further cards"
             } else {
                 currentIndex = nextIndex; // Normal navigation
             }
@@ -47,17 +49,22 @@
 
         function showCard() {
             if (currentIndex === -1) {
-                document.getElementById('card-text').innerText = "No previous card";
-            } else if (currentIndex === cards.length) {
-                document.getElementById('card-text').innerText = "No further cards";
+                cardTextElement.innerText = "No previous card";
+                cardTextElement.className = "ht-primary";
+            } else if (currentIndex === numCards) {
+                cardTextElement.innerText = "No further cards";
+                cardTextElement.className = "ht-primary";
             } else {
-                cardCountElement.innerText = "CARD " + (currentIndex + 1) + "/" + cards.length;
-                document.getElementById('card-text').innerText = cards[currentIndex];
+                cardCountElement.innerText = "CARD " + (currentIndex + 1) + "/" + numCards;
+                cardTextElement.innerText = cards[currentIndex];
+                cardTextElement.className = "ht-secondary";
             }
         }
 
         showCard(); // Show the first card on page load
     </script>
 
-    <script src="{{ url_for('static', filename='js/card-hover.js') }}">
+    <script src="{{ url_for('static', filename='js/card-hover.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/swipe-functionality.js') }}"></script>
+
 {% endblock %}
