@@ -31,26 +31,38 @@
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg justify-content-center" style="background: var(--theme02);">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link text-light" href="{{ url_for('home') }}">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-light" href="{{ url_for('about') }}">About</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-light" href="{{ url_for('play') }}">Play</a>
-        </li>
-    </ul>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background: var(--theme02);">
+    <div class="container-fluid">
+        <!-- Branding -->
+        <a class="navbar-brand" href="{{ url_for('home') }}">
+            <i class="fas fa-people-arrows"></i> Hidden Ties
+        </a>
+
+        <!-- Toggler/collapsible Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about') }}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('play') }}">Play</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 </nav>
 
 <!-- Page content -->
-<div class="container d-flex justify-content-center align-items-center" style="height: calc(100vh - 200px);">
+<div class="container d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 200px);">
     {% block content %}{% endblock %}
 </div>
 
