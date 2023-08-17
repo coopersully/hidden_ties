@@ -4,3 +4,10 @@ A game that explores connections, feelings, and questions that bring people clos
 <p align="center">
   <img src="https://i.imgur.com/FbgIc7E.png">
 </p>
+
+## Contribute Your Ideas!
+The strength of Hidden Ties lies in the collective wisdom of its players. Have a question or prompt that you'd love to see in the game? 
+Feel free to suggest new cards or wild-card ideas below:
+
+- [Suggest a 'normal' card](https://github.com/coopersully/hidden-ties/blob/main/static/cards/normal.json)
+- [Suggest a wild-card](https://github.com/coopersully/hidden-ties/blob/main/static/cards/wildcards.json)
