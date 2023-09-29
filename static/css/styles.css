@@ -3,7 +3,7 @@
     --theme02: #004ddc;
     --theme03: #068FFF;
     --theme04: #EEEEEE;
-    --theme05: #A2FF86;
+    --theme05: #4dd325;
 }
 
 body {
@@ -12,6 +12,12 @@ body {
 
 .btn-primary {
     --bs-btn-bg: var(--theme02);
+}
+
+.outline-section {
+    border: 1px solid var(--theme04);
+    border-radius: 25px;
+    color: white;
 }
 
 .btn-secondary {
@@ -76,7 +82,6 @@ body {
     }
 }
 
-
 .nav-pill {
     background-color: var(--theme02) !important;
     border-radius: 50px;
@@ -93,4 +98,52 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
+}
+
+.pack-unselected,
+.pack-selected {
+    background: #dedede;
+    border: 3px solid var(--theme02);
+    transition: all 0.3s ease;
+}
+
+.pack-selected {
+    background: #ffffff;
+    border: 3px solid var(--theme05);
+    transform: scale(1.025);
+}
+
+.player-count-option,
+.cards-per-player-option {
+    width: 100px;
+    height: 100px;
+    background-color: #dedede;
+    border: 3px solid var(--theme02);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 100px;
+    cursor: pointer;
+    margin-right: 10px;
+    display: inline-block;
+    color: black;
+    font-size: 2rem;
+    transition: all 0.3s ease;
+}
+
+.player-count-option.selected,
+.cards-per-player-option.selected {
+    background-color: #ffffff;
+    border: 3px solid var(--theme05);
+    transform: scale(1.025);
+}
+
+.label-top-center {
+    position: relative;
+    text-align: center;
+    top: -65px;
+    margin: 0 auto;
+    display: table;
+    background-color: var(--theme03);
+    padding: 5px 20px;
+    border-radius: 10px;
 }

@@ -4,42 +4,44 @@
 
 {% block content %}
 
+
     <div id="card-container" class="d-flex flex-column align-items-center text-center my-4">
         <div class="ht-secondary my-2">
-            <p id="card-count">INSTRUCTION CARD 1/4</p>
+            <p id="card-count">INSTRUCTIONS 0/0</p>
         </div>
         <div class="d-flex align-items-center">
-            <button id="prev" class="btn btn-link text-primary mx-4" onclick="navigate(-1)">
-                <i class="fas fa-arrow-circle-left fa-2x"></i>
+            <button id="prev" class="btn btn-link text-primary mx-4 d-none d-md-block" onclick="navigate(-1)">
+                <i class="fa-solid fa-chevron-left" style="font-size: 10vh;"></i>
             </button>
             <div id="card" class="game-card ht-secondary">
-                <!-- Card Content Will Go Here -->
+                <p id="card-text"></p>
             </div>
-            <button id="next" class="btn btn-link text-primary mx-4" onclick="navigate(1)">
-                <i class="fas fa-arrow-circle-right fa-2x"></i>
+            <button id="next" class="btn btn-link text-primary mx-4 d-none d-md-block" onclick="navigate(1)">
+                <i class="fa-solid fa-chevron-right" style="font-size: 10vh;"></i>
             </button>
         </div>
         <div class="ht-secondary my-2">
-            <p id="hidden-ties">HIDDEN TIES</p>
+            <p id="hidden-ties">SOCIAL HOUSE</p>
         </div>
     </div>
 
     <script>
-        var cards = [
-            "{{ url_for('static', filename='cards/guide/how-to-play.html') }}",
-            "{{ url_for('static', filename='cards/guide/who-you-play-with.html') }}",
-            "{{ url_for('static', filename='cards/guide/what-to-expect.html') }}",
-            "{{ url_for('static', filename='cards/guide/no-limit.html') }}",
-            "{{ url_for('static', filename='cards/guide/find-connections.html') }}",
-            "{{ url_for('static', filename='cards/guide/honesty-disclaimer.html') }}",
-            "{{ url_for('static', filename='cards/guide/ready-to-play.html') }}"
+        const cards = [
+            "Welcome to Social House, an online do-it-your-way card game.",
+            "There's no strict goal or master plan here – we're all about socializing and killing time, the modern way.",
+            "Forget buying a million card games; you're the boss here. Make your own game, your own rules. Swipe through the cards and answer them, or don't – we're not your mom.",
+            "There's only one rule: you can't lie. You can skip cards if you want, but lying is bad. It's also a sin and jesus knows when you sin.",
+            "If you lie jesus will know.",
+            "Don't lie.",
+            "Get ready to dive into the world of Social House – connecting with friends, quality time, and, most importantly, having a blast!",
+            "That's it. Let's do this. Click the home button in the main menu to start setting up a game."
         ];
-        var currentIndex = 0;
+        let currentIndex = 0;
 
         const cardCountElement = document.getElementById('card-count');
 
         function navigate(direction) {
-            var nextIndex = currentIndex + direction;
+            let nextIndex = currentIndex + direction;
 
             if (nextIndex < 0) {
                 nextIndex = 0; // Don't go beyond the first card
@@ -53,20 +55,13 @@
 
         function showCard() {
             cardCountElement.innerText = "INSTRUCTION CARD " + (currentIndex + 1) + "/" + cards.length;
-
-            // Use the fetch function to load the HTML from the static file
-            fetch(cards[currentIndex])
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('card').innerHTML = html;
-                })
-                .catch(error => {
-                    console.error('Error loading card:', error);
-                    document.getElementById('card').innerText = 'Error loading content. Please refresh the page.';
-                });
+            document.getElementById('card-text').innerText = cards[currentIndex];
         }
 
         showCard(); // Show the first card on page load
     </script>
+
+    <script src="{{ url_for('static', filename='js/card-hover.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/swipe-functionality.js') }}"></script>
 
 {% endblock %}

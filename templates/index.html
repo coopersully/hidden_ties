@@ -3,18 +3,146 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <div class="text-center text-white my-4">
-        <i class="fas fa-people-arrows fa-2x mb-3"></i>
-        <h1 class="display-4 ht-primary">Hidden Ties</h1>
-        <p class="lead col-6 mx-auto ht-secondary">A game that explores connections, feelings, and questions that bring
-            people closer together. With a blend of thought-provoking questions and gentle prompts, it invites players
-            to explore, share, and celebrate their unique connections. Whether you're meeting someone new or deepening
-            an existing bond, Hidden Ties nurtures a space of connection, curiosity, and genuine conversation. Come
-            closer, and let's unfold the stories that bind us.</p>
-        <hr class="my-4">
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <a href="{{ url_for('play') }}" class="btn btn-primary btn-lg ht-secondary">PLAY</a>
-            <a href="{{ url_for('about') }}" class="btn btn-secondary btn-lg ht-secondary">INSTRUCTIONS</a>
+    <div class="text-center text-white my-5">
+
+        <!-- Header -->
+        <div class="jumbotron jumbotron-fluid text-light my-5">
+            <div class="container">
+                <h1 class="display-4 ht-primary">Social House</h1>
+                <p class="lead mx-auto ht-secondary">
+                    A local-multiplayer, web-based card game. Select a few themes, build a game, and play it with your
+                    friends.
+                </p>
+            </div>
         </div>
+
+        <form action="/play" method="post" class="my-5">
+
+            <!-- Pack selection -->
+            <div class="my-5 outline-section px-5 py-5">
+                <p class="label-top-center">Select one or more decks to play with.</p>
+                <div class="row">
+                    {% for pack in packs %}
+                        <div class="col-12 col-lg-4">
+                            <div class="card pack-unselected mx-2 my-2" style="border-radius: 25px;">
+                                <div class="card-body text-center selectable-card" data-pack-name="{{ pack.name }}">
+                                    <h5 class="card-title ht-primary">{{ pack.name }}</h5>
+
+                                    <p class="card-text">{{ pack.description }}</p>
+
+                                    <!-- Hidden Checkbox (Allows toggling) -->
+                                    <label for="{{ pack.name }}" style="display: none;"></label>
+                                    <input type="checkbox" class="select-checkbox" name="packs" value="{{ pack.name }}"
+                                           id="{{ pack.name }}" style="display: none;">
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Player count selection -->
+            <div class="my-5 outline-section px-5 py-5">
+                <p class="label-top-center">How many players?</p>
+                <div class="mx-2 my-2 player-count-options ht-secondary">
+                    <div class="mx-2 my-2 player-count-option" data-player-count="2">2</div>
+                    <div class="mx-2 my-2 player-count-option selected" data-player-count="3">3</div>
+                    <div class="mx-2 my-2 player-count-option" data-player-count="4">4</div>
+                    <div class="mx-2 my-2 player-count-option" data-player-count="5">5</div>
+                    <div class="mx-2 my-2 player-count-option" data-player-count="6">6</div>
+                    <div class="mx-2 my-2 player-count-option" data-player-count="7">7</div>
+                    <div class="mx-2 my-2 player-count-option" data-player-count="8">8</div>
+                    <div class="mx-2 my-2 player-count-option" data-player-count="9">9</div>
+                    <div class="mx-2 my-2 player-count-option" data-player-count="10">10</div>
+                </div>
+                <input type="hidden" name="player_count" id="player_count" value="3">
+            </div>
+
+            <!-- Card count selection -->
+            <div class="my-5 outline-section px-5 py-5">
+                <p class="label-top-center">How many cards should each player answer?</p>
+                <div class="mx-2 my-2 cards-per-player-options ht-secondary">
+                    <div class="mx-2 my-2 cards-per-player-option" data-cards-count="5">5</div>
+                    <div class="mx-2 my-2 cards-per-player-option selected" data-cards-count="10">10</div>
+                    <div class="mx-2 my-2 cards-per-player-option" data-cards-count="15">15</div>
+                    <div class="mx-2 my-2 cards-per-player-option" data-cards-count="20">20</div>
+                    <div class="mx-2 my-2 cards-per-player-option" data-cards-count="25">25</div>
+                    <div class="mx-2 my-2 cards-per-player-option" data-cards-count="30">30</div>
+                    <div class="mx-2 my-2 cards-per-player-option" data-cards-count="35">35</div>
+                    <div class="mx-2 my-2 cards-per-player-option" data-cards-count="40">40</div>
+                    <div class="mx-2 my-2 cards-per-player-option" data-cards-count="45">45</div>
+                </div>
+                <input type="hidden" name="cards_per_player" id="cards_per_player" value="10">
+            </div>
+
+            <!-- Play button -->
+            <button type="submit" class="btn btn-lg btn-light rounded-pill" id="play-button">Let's Play</button>
+        </form>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add click event listeners to selectable cards
+            document.querySelectorAll('.selectable-card').forEach((card) => {
+                card.addEventListener('click', function () {
+                    const checkbox = this.querySelector('.select-checkbox');
+                    checkbox.checked = !checkbox.checked;
+
+                    // Toggle the 'pack-selected' and 'pack-unselected' classes
+                    this.closest('.card').classList.toggle('pack-selected', checkbox.checked);
+                    this.closest('.card').classList.toggle('pack-unselected', !checkbox.checked);
+
+                    // Call the function to check the button state
+                    updatePlayButtonState();
+                });
+            });
+
+            // Add click event listeners to player count and cards per player options
+            const playerCountOptions = document.querySelectorAll('.player-count-option');
+            const cardsPerPlayerOptions = document.querySelectorAll('.cards-per-player-option');
+
+            playerCountOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    document.getElementById('player_count').value = option.getAttribute('data-player-count');
+
+                    // Unselect other options
+                    playerCountOptions.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+
+                    // Call the function to check the button state
+                    updatePlayButtonState();
+                });
+            });
+
+            cardsPerPlayerOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    document.getElementById('cards_per_player').value = option.getAttribute('data-cards-count');
+
+                    // Unselect other options
+                    cardsPerPlayerOptions.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+
+                    // Call the function to check the button state
+                    updatePlayButtonState();
+                });
+            });
+
+            // Function to check the state of the "Let's Play" button
+            function updatePlayButtonState() {
+                const checkboxes = document.querySelectorAll('.select-checkbox');
+                const playButton = document.getElementById('play-button');
+                const atLeastOneChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+                // Enable or disable the button based on whether at least one checkbox is checked
+                if (atLeastOneChecked) {
+                    playButton.removeAttribute('disabled');
+                } else {
+                    playButton.setAttribute('disabled', 'true');
+                }
+            }
+
+            // Initial check to disable the button if no packs are selected
+            updatePlayButtonState();
+        });
+    </script>
 {% endblock %}
