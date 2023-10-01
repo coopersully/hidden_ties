@@ -140,3 +140,14 @@ body {
 .svg-bottom {
     margin-bottom: -5px;
 }
+
+.label-top-center {
+    position: relative;
+    text-align: center;
+    top: -65px;
+    margin: 0 auto;
+    display: table;
+    background-color: var(--theme03);
+    padding: 5px 20px;
+    border-radius: 10px;
+}
