@@ -151,3 +151,10 @@ body {
     padding: 5px 20px;
     border-radius: 10px;
 }
+
+.card-badge {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid var(--theme04);
+}

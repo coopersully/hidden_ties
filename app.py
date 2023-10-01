@@ -19,6 +19,7 @@ def load_packs():
                     pack_data.append({
                         'name': data['pack_name'],
                         'description': data['pack_description'],
+                        'badge': data['badge'],
                         'questions': data['questions'],
                         'population': data['questions'].__len__()
                     })

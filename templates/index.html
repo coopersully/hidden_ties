@@ -27,7 +27,7 @@
                     <div class="row">
                         {% for pack in packs %}
                             <div class="col-12 col-lg-4">
-                                <div class="card pack-unselected mx-2 my-2" style="border-radius: 25px;">
+                                <div class="card position-relative pack-unselected mx-2 my-2" style="border-radius: 25px;">
                                     <div class="card-body text-center selectable-card" data-pack-name="{{ pack.name }}">
                                         <h5 class="card-title ht-primary">{{ pack.name }}</h5>
 
@@ -39,6 +39,11 @@
                                                value="{{ pack.name }}"
                                                id="{{ pack.name }}" style="display: none;">
                                     </div>
+                                    {% if pack.badge != "" %}
+                                        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger card-badge">
+                                            <span class="ht-secondary text-light">{{ pack.badge }}</span>
+                                        </span>
+                                    {% endif %}
                                 </div>
                             </div>
                         {% endfor %}

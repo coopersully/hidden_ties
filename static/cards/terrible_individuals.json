@@ -1,6 +1,7 @@
 {
-  "pack_name": "Terrible Individuals [NSFL]",
+  "pack_name": "Terrible Individuals",
   "pack_description": "Explore the depths of raw and unfiltered confessions, challenges, and more in this daring pack. These questions dive into the taboo, the outrageous, and the terrible. Not even the FBI could get this stuff out of me.",
+  "badge": "21+",
   "questions": [
     "What's the most racist thing you've ever said? Say it with passion.",
     "Your father or mother switches bodies with your girlfriend or boyfriend. The only way to switch them back is to have sex with either your partner in your parent's body, or vice versa. Which do you choose?",
@@ -28,6 +29,8 @@
     "Post a gender reveal on your story and tag a random person.",
     "Have a person in the room put their belt around you like a leash.",
     "Swap shirts with the person to your left.",
-    ""
+    "Tell us your worst drunk story.",
+    "Who in the room do you think would be a bad date?",
+
   ]
 }
