@@ -63,5 +63,14 @@ def play():
     return render_template('play.html', cards=selected_questions[:player_count * cards_per_player])
 
 
+@app.route('/disclaimer')
+def disclaimer():
+    return render_template('disclaimer.html')
+
+@app.route('/privacy_policy')
+def privacy_policy():
+    return render_template('privacy_policy.html')
+
+
 if __name__ == '__main__':
     app.run()

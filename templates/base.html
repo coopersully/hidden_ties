@@ -37,8 +37,30 @@
 <body>
 
 <!-- Page content -->
-<div class="container d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 200px);">
-    {% block content %}{% endblock %}
+{% block content %}{% endblock %}
+
+<!-- Footer -->
+<svg class="svg-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+    <path fill="#004ddc" fill-opacity="1"
+          d="M0,96L80,85.3C160,75,320,53,480,85.3C640,117,800,203,960,229.3C1120,256,1280,224,1360,208L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+</svg>
+<div class="jumbotron jumbotron-fluid text-light ht-secondary" style="background: #004ddc;">
+    <div class="container">
+        <div style="color: var(--theme03);">
+            Social House is a local-multiplayer, web-based card game. Select a few themes, build a game, and play it
+            with your friends. All of these cards, questions, and challenges assume that you're a normal human being
+            with critical thinking skills and common sense. Please play the game responsibly and don't be stupid.
+        </div>
+        <div class="d-flex flex-column flex-sm-row justify-content-between pt-4" style="color: var(--theme05);">
+            <a href="{{ url_for('disclaimer') }}" style="color: inherit; text-decoration: inherit;">Disclaimer</a>
+            <a href="{{ url_for('privacy_policy') }}" style="color: inherit; text-decoration: inherit;">Privacy
+                Policy</a>
+        </div>
+        <div class="d-flex flex-column flex-sm-row justify-content-between pb-4">
+            <p>© 2023 Neonaut LLC. All rights reserved.</p>
+            <p>Designed & created by Neonaut.</p>
+        </div>
+    </div>
 </div>
 
 <!-- Navigation -->

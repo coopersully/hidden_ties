@@ -3,81 +3,87 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <div class="text-center text-white my-5">
 
-        <!-- Header -->
-        <div class="jumbotron jumbotron-fluid text-light my-5">
-            <div class="container">
-                <h1 class="display-4 ht-primary">Social House</h1>
-                <p class="lead mx-auto ht-secondary">
-                    A local-multiplayer, web-based card game. Select a few themes, build a game, and play it with your
-                    friends.
-                </p>
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 200px);">
+        <div class="text-center text-white my-5">
+
+            <!-- Header -->
+            <div class="jumbotron jumbotron-fluid text-light my-5">
+                <div class="container">
+                    <h1 class="display-4 ht-primary">Social House</h1>
+                    <p class="lead mx-auto ht-secondary">
+                        A local-multiplayer, web-based card game. Select a few themes, build a game, and play it with
+                        your
+                        friends.
+                    </p>
+                </div>
             </div>
-        </div>
 
-        <form action="/play" method="post" class="my-5">
+            <form action="/play" method="post" class="my-5">
 
-            <!-- Pack selection -->
-            <div class="my-5 outline-section px-5 py-5">
-                <p class="label-top-center">Select one or more decks to play with.</p>
-                <div class="row">
-                    {% for pack in packs %}
-                        <div class="col-12 col-lg-4">
-                            <div class="card pack-unselected mx-2 my-2" style="border-radius: 25px;">
-                                <div class="card-body text-center selectable-card" data-pack-name="{{ pack.name }}">
-                                    <h5 class="card-title ht-primary">{{ pack.name }}</h5>
+                <!-- Pack selection -->
+                <div class="my-5 outline-section px-5 py-5">
+                    <p class="label-top-center">Select one or more decks to play with.</p>
+                    <div class="row">
+                        {% for pack in packs %}
+                            <div class="col-12 col-lg-4">
+                                <div class="card pack-unselected mx-2 my-2" style="border-radius: 25px;">
+                                    <div class="card-body text-center selectable-card" data-pack-name="{{ pack.name }}">
+                                        <h5 class="card-title ht-primary">{{ pack.name }}</h5>
 
-                                    <p class="card-text">{{ pack.description }}</p>
+                                        <p class="card-text">{{ pack.description }}</p>
 
-                                    <!-- Hidden Checkbox (Allows toggling) -->
-                                    <label for="{{ pack.name }}" style="display: none;"></label>
-                                    <input type="checkbox" class="select-checkbox" name="packs" value="{{ pack.name }}"
-                                           id="{{ pack.name }}" style="display: none;">
+                                        <!-- Hidden Checkbox (Allows toggling) -->
+                                        <label for="{{ pack.name }}" style="display: none;"></label>
+                                        <input type="checkbox" class="select-checkbox" name="packs"
+                                               value="{{ pack.name }}"
+                                               id="{{ pack.name }}" style="display: none;">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {% endfor %}
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
 
-            <!-- Player count selection -->
-            <div class="my-5 outline-section px-5 py-5">
-                <p class="label-top-center">How many players?</p>
-                <div class="mx-2 my-2 player-count-options ht-secondary">
-                    <div class="mx-2 my-2 player-count-option" data-player-count="2">2</div>
-                    <div class="mx-2 my-2 player-count-option selected" data-player-count="3">3</div>
-                    <div class="mx-2 my-2 player-count-option" data-player-count="4">4</div>
-                    <div class="mx-2 my-2 player-count-option" data-player-count="5">5</div>
-                    <div class="mx-2 my-2 player-count-option" data-player-count="6">6</div>
-                    <div class="mx-2 my-2 player-count-option" data-player-count="7">7</div>
-                    <div class="mx-2 my-2 player-count-option" data-player-count="8">8</div>
-                    <div class="mx-2 my-2 player-count-option" data-player-count="9">9</div>
-                    <div class="mx-2 my-2 player-count-option" data-player-count="10">10</div>
+                <!-- Player count selection -->
+                <div class="my-5 outline-section px-5 py-5">
+                    <p class="label-top-center">How many players?</p>
+                    <div class="mx-2 my-2 player-count-options ht-secondary">
+                        <div class="mx-2 my-2 player-count-option" data-player-count="2">2</div>
+                        <div class="mx-2 my-2 player-count-option selected" data-player-count="3">3</div>
+                        <div class="mx-2 my-2 player-count-option" data-player-count="4">4</div>
+                        <div class="mx-2 my-2 player-count-option" data-player-count="5">5</div>
+                        <div class="mx-2 my-2 player-count-option" data-player-count="6">6</div>
+                        <div class="mx-2 my-2 player-count-option" data-player-count="7">7</div>
+                        <div class="mx-2 my-2 player-count-option" data-player-count="8">8</div>
+                        <div class="mx-2 my-2 player-count-option" data-player-count="9">9</div>
+                        <div class="mx-2 my-2 player-count-option" data-player-count="10">10</div>
+                    </div>
+                    <input type="hidden" name="player_count" id="player_count" value="3">
                 </div>
-                <input type="hidden" name="player_count" id="player_count" value="3">
-            </div>
 
-            <!-- Card count selection -->
-            <div class="my-5 outline-section px-5 py-5">
-                <p class="label-top-center">How many cards should each player answer?</p>
-                <div class="mx-2 my-2 cards-per-player-options ht-secondary">
-                    <div class="mx-2 my-2 cards-per-player-option" data-cards-count="5">5</div>
-                    <div class="mx-2 my-2 cards-per-player-option selected" data-cards-count="10">10</div>
-                    <div class="mx-2 my-2 cards-per-player-option" data-cards-count="15">15</div>
-                    <div class="mx-2 my-2 cards-per-player-option" data-cards-count="20">20</div>
-                    <div class="mx-2 my-2 cards-per-player-option" data-cards-count="25">25</div>
-                    <div class="mx-2 my-2 cards-per-player-option" data-cards-count="30">30</div>
-                    <div class="mx-2 my-2 cards-per-player-option" data-cards-count="35">35</div>
-                    <div class="mx-2 my-2 cards-per-player-option" data-cards-count="40">40</div>
-                    <div class="mx-2 my-2 cards-per-player-option" data-cards-count="45">45</div>
+                <!-- Card count selection -->
+                <div class="my-5 outline-section px-5 py-5">
+                    <p class="label-top-center">How many cards should each player answer?</p>
+                    <div class="mx-2 my-2 cards-per-player-options ht-secondary">
+                        <div class="mx-2 my-2 cards-per-player-option" data-cards-count="5">5</div>
+                        <div class="mx-2 my-2 cards-per-player-option selected" data-cards-count="10">10</div>
+                        <div class="mx-2 my-2 cards-per-player-option" data-cards-count="15">15</div>
+                        <div class="mx-2 my-2 cards-per-player-option" data-cards-count="20">20</div>
+                        <div class="mx-2 my-2 cards-per-player-option" data-cards-count="25">25</div>
+                        <div class="mx-2 my-2 cards-per-player-option" data-cards-count="30">30</div>
+                        <div class="mx-2 my-2 cards-per-player-option" data-cards-count="35">35</div>
+                        <div class="mx-2 my-2 cards-per-player-option" data-cards-count="40">40</div>
+                        <div class="mx-2 my-2 cards-per-player-option" data-cards-count="45">45</div>
+                    </div>
+                    <input type="hidden" name="cards_per_player" id="cards_per_player" value="10">
                 </div>
-                <input type="hidden" name="cards_per_player" id="cards_per_player" value="10">
-            </div>
 
-            <!-- Play button -->
-            <button type="submit" class="btn btn-lg btn-light rounded-pill" id="play-button">Let's Play</button>
-        </form>
+                <!-- Play button -->
+                <button type="submit" class="btn btn-lg btn-light rounded-pill" id="play-button">Let's Play</button>
+            </form>
+
+        </div>
     </div>
 
     <script>

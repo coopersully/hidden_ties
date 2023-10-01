@@ -4,24 +4,25 @@
 
 {% block content %}
 
-
-    <div id="card-container" class="d-flex flex-column align-items-center text-center my-4">
-        <div class="ht-secondary my-2">
-            <p id="card-count">INSTRUCTIONS 0/0</p>
-        </div>
-        <div class="d-flex align-items-center">
-            <button id="prev" class="btn btn-link text-primary mx-4 d-none d-md-block" onclick="navigate(-1)">
-                <i class="fa-solid fa-chevron-left" style="font-size: 10vh;"></i>
-            </button>
-            <div id="card" class="game-card ht-secondary">
-                <p id="card-text"></p>
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 200px);">
+        <div id="card-container" class="d-flex flex-column align-items-center text-center my-4">
+            <div class="ht-secondary my-2">
+                <p id="card-count">INSTRUCTIONS 0/0</p>
             </div>
-            <button id="next" class="btn btn-link text-primary mx-4 d-none d-md-block" onclick="navigate(1)">
-                <i class="fa-solid fa-chevron-right" style="font-size: 10vh;"></i>
-            </button>
-        </div>
-        <div class="ht-secondary my-2">
-            <p id="hidden-ties">SOCIAL HOUSE</p>
+            <div class="d-flex align-items-center">
+                <button id="prev" class="btn btn-link text-primary mx-4 d-none d-md-block" onclick="navigate(-1)">
+                    <i class="fa-solid fa-chevron-left" style="font-size: 10vh;"></i>
+                </button>
+                <div id="card" class="game-card ht-secondary">
+                    <p id="card-text"></p>
+                </div>
+                <button id="next" class="btn btn-link text-primary mx-4 d-none d-md-block" onclick="navigate(1)">
+                    <i class="fa-solid fa-chevron-right" style="font-size: 10vh;"></i>
+                </button>
+            </div>
+            <div class="ht-secondary my-2">
+                <p id="hidden-ties">SOCIAL HOUSE</p>
+            </div>
         </div>
     </div>
 
